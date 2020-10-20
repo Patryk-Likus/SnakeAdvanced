@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements ActionListener {
         this.addKeyListener(new MyKey());
         startGame();
 
+
     }
 
     public void startGame() {
@@ -71,6 +72,9 @@ public class GamePanel extends JPanel implements ActionListener {
         if (snakeX[0] < 0 || snakeX[0] > SCREEN_WIDTH || snakeY[0] < 0 || snakeY[0] > SCREEN_HEIGHT) {
             running = false;
         }
+        if(!running){
+            timer.stop();
+        }
 
     }
 
@@ -98,31 +102,40 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void gameOver(Graphics g) {
-
+            g.setColor(RED);
+            g.setFont(new Font("Arial",Font.BOLD, 100));
+            FontMetrics fontMetrics1 = getFontMetrics(g.getFont());
+            g.drawString("Game over", (SCREEN_WIDTH - fontMetrics1.stringWidth("Game over")) / 2, SCREEN_HEIGHT / 2);
+            g.setColor(RED);
+            g.setFont(new Font("Arial", Font.BOLD, 30));
+            FontMetrics fontMetrics2 = getFontMetrics(g.getFont());
+            g.drawString("Score: " + score, (SCREEN_WIDTH - fontMetrics2.stringWidth("Score: " + score)) / 2, (SCREEN_HEIGHT / 2) + 60);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        for (int i = 0; i < SCREEN_WIDTH / UNIT; i++) {
-            g.drawLine(UNIT * i, 0, UNIT * i, SCREEN_HEIGHT);
-        }
-        for (int i = 0; i < SCREEN_HEIGHT / UNIT; i++) {
-            g.drawLine(0, UNIT * i, SCREEN_WIDTH, UNIT * i);
-        }
-        g.setColor(RED);
-        g.fillOval(appleX, appleY, UNIT, UNIT);
+        if(running) {
+            g.setColor(RED);
+            g.fillOval(appleX, appleY, UNIT, UNIT);
 
-        for (int i = 0; i < snakeSize; i++) {
-            if (i == 0) {
-                g.setColor(GREEN);
-                g.fillRect(snakeX[i], snakeY[i], UNIT, UNIT);
-            } else {
-                g.setColor(BLUE);
-                g.fillRect(snakeX[i], snakeY[i], UNIT, UNIT);
+            for (int i = 0; i < snakeSize; i++) {
+                if (i == 0) {
+                    g.setColor(GREEN);
+                    g.fillRect(snakeX[i], snakeY[i], UNIT, UNIT);
+                } else {
+                    g.setColor(BLUE);
+                    g.fillRect(snakeX[i], snakeY[i], UNIT, UNIT);
+                }
             }
+            g.setColor(RED);
+            g.setFont(new Font("Arial", Font.BOLD, 30));
+            FontMetrics fontMetrics = getFontMetrics(g.getFont());
+            g.drawString("Score: " + score, SCREEN_WIDTH - fontMetrics.stringWidth("Score: " + score), 30);
         }
+        else
+            gameOver(g);
     }
 
     @Override
