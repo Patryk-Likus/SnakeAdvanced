@@ -6,8 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-import static java.awt.Color.BLACK;
-import static java.awt.Color.RED;
+import static java.awt.Color.*;
 
 public class GamePanel extends JPanel implements ActionListener {
 
@@ -17,13 +16,15 @@ public class GamePanel extends JPanel implements ActionListener {
     private static final int GAME_UNIT = (SCREEN_HEIGHT * SCREEN_WIDTH) / UNIT;
     private int[] snakeX = new int[GAME_UNIT];
     private int[] snakeY = new int[GAME_UNIT];
+    private int snakeSize = 8;
     private int appleX;
     private int appleY;
-    private boolean play;
+    private boolean running;
     private Timer timer;
     private Random random;
     char direction = 'R';
     private static final int DELAY = 80;
+    private int score = 0;
 
 
     public GamePanel() {
@@ -35,7 +36,7 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void startGame() {
-        play = true;
+        running = true;
         random = new Random();
         newApple();
         timer = new Timer(DELAY, this);
@@ -46,6 +47,38 @@ public class GamePanel extends JPanel implements ActionListener {
     public void newApple() {
         appleX = random.nextInt((int) (SCREEN_WIDTH / UNIT)) * UNIT;
         appleY = random.nextInt((int) (SCREEN_HEIGHT / UNIT)) * UNIT;
+    }
+    public void checkApple(){
+
+    }
+    public void crash(){
+
+    }
+    public void move(){
+        for(int i = snakeSize; i > 0; i--){
+            snakeX[i] = snakeX[i - 1];
+            snakeY[i] = snakeY[i - 1];
+        }
+        if(running){
+            switch (direction){
+                case 'L':
+                    snakeX[0] = snakeX[0] - UNIT;
+                    break;
+                case 'R':
+                    snakeX[0] = snakeX[0] + UNIT;
+                    break;
+                case 'U':
+                    snakeY[0] = snakeY[0] - UNIT;
+                    break;
+                case 'D':
+                    snakeY[0] = snakeY[0] + UNIT;
+                    break;
+            }
+        }
+    }
+
+    public void gameOver(Graphics g){
+
     }
 
     @Override
@@ -60,6 +93,17 @@ public class GamePanel extends JPanel implements ActionListener {
         }
         g.setColor(RED);
         g.fillOval(appleX, appleY, UNIT, UNIT);
+
+        for(int i = 0; i < snakeSize; i++){
+            if(i == 0) {
+                g.setColor(GREEN);
+                g.fillRect(snakeX[i], snakeY[i], UNIT, UNIT);
+            }
+            else {
+                g.setColor(BLUE);
+                g.fillRect(snakeX[i], snakeY[i], UNIT, UNIT);
+            }
+        }
     }
 
     @Override
@@ -69,6 +113,11 @@ public class GamePanel extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        if(running) {
+            move();
+            checkApple();
+            crash();
+        }
+        repaint();
     }
 }
