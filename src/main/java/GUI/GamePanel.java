@@ -52,6 +52,14 @@ public class GamePanel extends JPanel implements ActionListener {
 
     }
     public void crash(){
+        for(int i = 0; i < snakeSize; i++){
+            if(snakeX[0] == snakeX[i + 1] && snakeY[0] == snakeY[i + 1]){
+                running = false;
+            }
+        }
+        if(snakeX[0] < 0 || snakeX[0] > SCREEN_WIDTH || snakeY[0] < 0 || snakeY[0] > SCREEN_HEIGHT){
+            running = false;
+        }
 
     }
     public void move(){
