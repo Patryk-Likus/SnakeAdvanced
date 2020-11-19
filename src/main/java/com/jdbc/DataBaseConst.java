@@ -7,7 +7,7 @@ public abstract class DataBaseConst {
     protected static final String JDBC_DRIVER = "org.postgresql.Driver";
     protected static final String URL = "jdbc:postgresql://localhost/SnakeADV";
     protected static final String LOGIN = "postgres";
-    protected static final String PASSWORD = "Trib1pn23#";
+    protected static final String PASSWORD = "12345";
 
     protected Statement stmt;
     protected Connection conn;
