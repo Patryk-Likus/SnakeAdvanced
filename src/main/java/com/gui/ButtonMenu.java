@@ -31,12 +31,5 @@ public class ButtonMenu extends JButton {
                 setForeground(Color.green);
             }
         });
-
     }
-
-//    public void paint(Graphics g){
-//        g.drawString(text,0,0);
-//        g.setColor(Color.RED);
-//
-//    }
 }

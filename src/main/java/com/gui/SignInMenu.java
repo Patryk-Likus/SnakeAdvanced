@@ -136,13 +136,10 @@ public class SignInMenu extends JPanel {
             rootPanel.switchPanel(rootPanel.getGamePanel());
         });
 
-
         menuButton.addActionListener(e ->
         {
             System.out.println("Wróc do menu");
             rootPanel.switchPanel(rootPanel.getMainMenu());
         });
-
     }
-
 }

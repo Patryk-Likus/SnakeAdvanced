@@ -1,7 +1,5 @@
 package com.gui;
 
-import com.jdbc.AddPlayerToDataBase;
-import com.jdbc.FindPlayer;
 
 import javax.swing.*;
 import java.awt.*;
