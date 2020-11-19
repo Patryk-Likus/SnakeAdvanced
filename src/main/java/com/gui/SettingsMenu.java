@@ -16,7 +16,7 @@ public class SettingsMenu extends JPanel {
 
     public SettingsMenu(RootPanel gameFrame) {
         this.rootPanel = gameFrame;
-        gamePanel = new GamePanel(this.rootPanel);
+        gamePanel = new GamePanel(rootPanel);
 
         setBackground(Color.BLACK);
         setLayout(new GridBagLayout());

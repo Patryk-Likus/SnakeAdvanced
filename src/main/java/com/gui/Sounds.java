@@ -39,11 +39,6 @@ public class Sounds {
 
     }
 
-
-    public float getVolume() {
-        return volume;
-    }
-
     public static void setVolume(float volume1) {
         volume = volume1 / 10;
     }
