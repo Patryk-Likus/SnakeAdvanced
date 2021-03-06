@@ -6,7 +6,7 @@ The game itself has two optional modes:
 - Passing through walls (WallHack)
 - Poisoned apple, which resets scores and hides a good apple in a few fields from the snake
 
-The program verifies the registration and login process, thanks to which the player has the opportunity to create his own account, with a unique login. The scores of each player are stored on a scoreboard. Below screenshot from the app.
+The program verifies the registration and login process, thanks to which the player has the opportunity to create his own account, with a unique login. The scores of each player are stored on a scoreboard. Below screenshot from the app:
 
 
 ![Snake main](https://user-images.githubusercontent.com/65070389/99181169-0670cf00-272d-11eb-94c5-95729bbd5ea0.jpg)
